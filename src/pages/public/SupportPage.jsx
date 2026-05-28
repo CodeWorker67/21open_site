@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { MessageCircle, Send, HelpCircle, ChevronDown } from 'lucide-react';
 import { useState } from 'react';
-import { TELEGRAM } from '@utils/constants';
+import { TELEGRAM, BRAND_NAME } from '@utils/constants';
 import Button from '@components/ui/Button';
 
 const faqs = [
@@ -12,7 +12,7 @@ const faqs = [
   },
   {
     q: 'На скольких устройствах можно использовать?',
-    a: 'Тариф PRO — до 3 устройств одновременно. Ускоритель игр Mobile — 1 устройство.',
+    a: 'Тариф PRO — до 5 устройств одновременно.',
   },
   {
     q: 'Как активировать бесплатный период?',
@@ -38,7 +38,7 @@ export default function SupportPage() {
   return (
     <>
       <Helmet>
-        <title>Поддержка — ZoomerVPN</title>
+        <title>Поддержка — {BRAND_NAME}</title>
       </Helmet>
 
       <section className="py-20">

@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Check, Star, Zap, CreditCard, Smartphone } from 'lucide-react';
-import { TARIFFS, PAYMENT_METHODS, ROUTES } from '@utils/constants';
+import { Check, Star, Zap, CreditCard } from 'lucide-react';
+import { TARIFFS, PAYMENT_METHODS, ROUTES, BRAND_NAME } from '@utils/constants';
 import { paymentApi, trialApi } from '@services/api';
 import useAuthStore from '@stores/authStore';
 import Button from '@components/ui/Button';
@@ -17,7 +17,6 @@ export default function PricingPage() {
   const navigate = useNavigate();
 
   const proTariffs = TARIFFS.filter(t => t.type === 'pro');
-  const mobileTariff = TARIFFS.find(t => t.type === 'mobile');
 
   const handlePurchase = async () => {
     if (!isAuthenticated) {
@@ -66,8 +65,8 @@ export default function PricingPage() {
   return (
     <>
       <Helmet>
-        <title>Тарифы — ZoomerVPN</title>
-        <meta name="description" content="Тарифы ZoomerVPN от 99 руб. Безлимитный трафик, до 3 устройств, 26 серверов." />
+        <title>Тарифы — {BRAND_NAME}</title>
+        <meta name="description" content={`Тарифы ${BRAND_NAME} от 99 руб. Безлимитный трафик, до 5 устройств, 26 серверов.`} />
       </Helmet>
 
       <section className="py-20 relative">
@@ -108,7 +107,7 @@ export default function PricingPage() {
           </motion.div>
 
           {/* PRO tariffs */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 mb-12">
             {proTariffs.map((tariff, index) => (
               <motion.div
                 key={tariff.id}
@@ -163,38 +162,6 @@ export default function PricingPage() {
               </motion.div>
             ))}
           </div>
-
-          {/* Mobile tariff */}
-          {mobileTariff && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              onClick={() => setSelectedTariff(mobileTariff.id)}
-              className={`max-w-md mx-auto card-dark cursor-pointer mb-12 ${
-                selectedTariff === mobileTariff.id
-                  ? 'border-zoomer-neon ring-2 ring-zoomer-neon/50'
-                  : ''
-              }`}
-            >
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-10 h-10 rounded-xl bg-zoomer-cyan/10 flex items-center justify-center">
-                  <Smartphone className="w-5 h-5 text-zoomer-cyan" />
-                </div>
-                <div>
-                  <div className="text-white font-semibold">{mobileTariff.label}</div>
-                  <div className="text-gray-400 text-xs">Оптимизирован для стабильной работы VPN на мобильном интернете, 1 устройство</div>
-                </div>
-              </div>
-              <div className="flex items-baseline justify-between">
-                <div>
-                  <span className="text-2xl font-bold text-white">{mobileTariff.price}</span>
-                  <span className="text-gray-400 ml-1">руб/мес</span>
-                </div>
-                <div className="text-xs text-gray-500">1 устройство</div>
-              </div>
-            </motion.div>
-          )}
 
           {/* Payment method selection */}
           {selectedTariff && (

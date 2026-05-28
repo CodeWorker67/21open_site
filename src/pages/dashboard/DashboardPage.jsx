@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { QRCodeSVG } from 'qrcode.react';
-import { User, Key, Users, Settings, LogOut, Shield, Clock, Copy, Check, ExternalLink, Link2, Send, Mail, Zap, Wifi } from 'lucide-react';
+import { User, Key, Users, LogOut, Shield, Clock, Copy, Check, ExternalLink, Link2, Send, Mail, Zap, Wifi } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import useAuthStore from '@stores/authStore';
 import { userApi, trialApi, authApi } from '@services/api';
-import { TELEGRAM, ROUTES } from '@utils/constants';
+import { TELEGRAM, ROUTES, BRAND_NAME, PRO_SUBSCRIPTION_LABEL } from '@utils/constants';
 import Button from '@components/ui/Button';
 import toast from 'react-hot-toast';
 
@@ -24,7 +24,7 @@ export default function DashboardPage() {
   return (
     <>
       <Helmet>
-        <title>Личный кабинет — ZoomerVPN</title>
+        <title>Личный кабинет — {BRAND_NAME}</title>
       </Helmet>
 
       <section className="py-20 min-h-screen">
@@ -108,8 +108,8 @@ function OverviewTab() {
     }
   };
 
-  const hasAnySub = sub?.pro?.active || sub?.mobile?.active;
-  const hasAnyKey = keys?.pro_url || keys?.mobile_url;
+  const hasAnySub = sub?.pro?.active;
+  const hasAnyKey = keys?.pro_url;
 
   if (loading) return <LoadingSkeleton />;
 
@@ -128,7 +128,7 @@ function OverviewTab() {
       )}
 
       {hasAnySub && hasAnyKey && (
-        <a href={keys.pro_url || keys.mobile_url}
+        <a href={keys.pro_url}
           target="_blank" rel="noopener noreferrer"
           className="w-full p-5 rounded-2xl bg-gradient-to-r from-zoomer-neon-dim to-zoomer-neon text-white font-semibold text-lg flex items-center justify-center gap-3 hover:opacity-90 transition-opacity block text-center"
         >
@@ -137,15 +137,15 @@ function OverviewTab() {
         </a>
       )}
 
-      {/* Subscriptions */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {/* Subscription */}
+      <div className="max-w-md">
         <div className="card-dark">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-10 h-10 rounded-xl bg-zoomer-neon/10 flex items-center justify-center">
               <Shield className="w-5 h-5 text-zoomer-neon" />
             </div>
             <div>
-              <div className="text-white font-semibold">VPN PRO</div>
+              <div className="text-white font-semibold">{PRO_SUBSCRIPTION_LABEL}</div>
               <div className={`text-sm ${sub?.pro?.active ? 'text-zoomer-green' : 'text-red-400'}`}>
                 {sub?.pro?.active ? 'Активна' : 'Не активна'}
               </div>
@@ -162,26 +162,6 @@ function OverviewTab() {
               <Link to={ROUTES.PRICING}>
                 <Button className="w-full text-sm">Купить подписку</Button>
               </Link>
-            </div>
-          )}
-        </div>
-
-        <div className="card-dark">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 rounded-xl bg-zoomer-cyan/10 flex items-center justify-center">
-              <Settings className="w-5 h-5 text-zoomer-cyan" />
-            </div>
-            <div>
-              <div className="text-white font-semibold">Mobile</div>
-              <div className={`text-sm ${sub?.mobile?.active ? 'text-zoomer-green' : 'text-gray-500'}`}>
-                {sub?.mobile?.active ? 'Активна' : 'Не активна'}
-              </div>
-            </div>
-          </div>
-          {sub?.mobile?.expires && (
-            <div className="flex items-center gap-2 text-gray-400 text-sm">
-              <Clock className="w-4 h-4" />
-              До: {sub.mobile.expires}
             </div>
           )}
         </div>
@@ -235,7 +215,7 @@ function KeysTab() {
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-2">
               <Shield className="w-5 h-5 text-zoomer-neon" />
-              <span className="text-white font-semibold">VPN PRO</span>
+              <span className="text-white font-semibold">{PRO_SUBSCRIPTION_LABEL}</span>
             </div>
             <div className="flex gap-2">
               <button
@@ -256,27 +236,7 @@ function KeysTab() {
         </div>
       )}
 
-      {keys?.mobile_url && (
-        <div className="card-dark">
-          <div className="flex items-center justify-between mb-3">
-            <div className="flex items-center gap-2">
-              <Settings className="w-5 h-5 text-zoomer-cyan" />
-              <span className="text-white font-semibold">Mobile</span>
-            </div>
-            <button
-              onClick={() => copyUrl(keys.mobile_url, 'mobile')}
-              className="p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors"
-            >
-              {copied === 'mobile' ? <Check className="w-4 h-4 text-zoomer-green" /> : <Copy className="w-4 h-4 text-gray-400" />}
-            </button>
-          </div>
-          <div className="p-3 bg-zoomer-dark rounded-lg">
-            <code className="text-xs text-gray-400 break-all">{keys.mobile_url}</code>
-          </div>
-        </div>
-      )}
-
-      {!keys?.pro_url && !keys?.mobile_url && (
+      {!keys?.pro_url && (
         <div className="card-dark text-center py-12">
           <Key className="w-12 h-12 text-gray-600 mx-auto mb-4" />
           <p className="text-gray-400 mb-4">У вас пока нет активных ключей</p>
@@ -332,7 +292,7 @@ function ReferralsTab() {
         <div className="space-y-3 text-sm text-gray-400">
           <p>1. Поделитесь реферальной ссылкой с другом</p>
           <p>2. Друг регистрируется и покупает подписку</p>
-          <p>3. Вы получаете <span className="text-zoomer-green font-semibold">+7 дней</span> к вашей подписке VPN PRO</p>
+          <p>3. Вы получаете <span className="text-zoomer-green font-semibold">+7 дней</span> к вашей подписке {PRO_SUBSCRIPTION_LABEL}</p>
         </div>
       </div>
 

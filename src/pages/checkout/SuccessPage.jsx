@@ -1,13 +1,13 @@
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { CheckCircle } from 'lucide-react';
-import { ROUTES } from '@utils/constants';
+import { ROUTES, BRAND_NAME } from '@utils/constants';
 import Button from '@components/ui/Button';
 
 export default function SuccessPage() {
   return (
     <>
-      <Helmet><title>Оплата успешна — ZoomerVPN</title></Helmet>
+      <Helmet><title>Оплата успешна — {BRAND_NAME}</title></Helmet>
       <section className="py-20 min-h-screen flex items-center justify-center">
         <div className="card-dark max-w-md mx-4 text-center">
           <CheckCircle className="w-16 h-16 text-zoomer-green mx-auto mb-4" />

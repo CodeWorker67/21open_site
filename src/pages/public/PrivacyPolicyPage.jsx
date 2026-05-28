@@ -1,9 +1,10 @@
 import { Helmet } from 'react-helmet-async';
+import { BRAND_NAME, TELEGRAM } from '@utils/constants';
 
 export default function PrivacyPolicyPage() {
   return (
     <>
-      <Helmet><title>Политика конфиденциальности — ZoomerVPN</title></Helmet>
+      <Helmet><title>Политика конфиденциальности — {BRAND_NAME}</title></Helmet>
       <section className="py-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-3xl font-bold text-white mb-8">Политика конфиденциальности</h1>
@@ -11,7 +12,7 @@ export default function PrivacyPolicyPage() {
             <p>Дата вступления в силу: 01 апреля 2026 г.</p>
 
             <h2 className="text-xl font-semibold text-white">1. Какие данные мы собираем</h2>
-            <p>При использовании сервиса ZoomerVPN мы можем собирать следующую информацию:</p>
+            <p>При использовании сервиса {BRAND_NAME} мы можем собирать следующую информацию:</p>
             <ul className="list-disc pl-5 space-y-1">
               <li>Telegram ID (для идентификации учётной записи)</li>
               <li>Дата регистрации и дата окончания подписки</li>
@@ -34,7 +35,7 @@ export default function PrivacyPolicyPage() {
             <p>Мы не продаём и не передаём ваши данные третьим лицам, кроме случаев, предусмотренных законодательством.</p>
 
             <h2 className="text-xl font-semibold text-white">5. Контакты</h2>
-            <p>По вопросам конфиденциальности: <a href="https://t.me/suppzoomvpn" className="text-zoomer-neon hover:underline">@suppzoomvpn</a></p>
+            <p>По вопросам конфиденциальности: <a href={TELEGRAM.SUPPORT_URL} className="text-zoomer-neon hover:underline">@goSocialsupp</a></p>
           </div>
         </div>
       </section>

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Shield, Send, MessageCircle } from 'lucide-react';
-import { ROUTES, TELEGRAM } from '@utils/constants';
+import { ROUTES, TELEGRAM, BRAND_NAME } from '@utils/constants';
 
 export default function Footer() {
   return (
@@ -13,7 +13,7 @@ export default function Footer() {
               <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-zoomer-neon-dim to-zoomer-neon flex items-center justify-center">
                 <Shield className="w-5 h-5 text-white" />
               </div>
-              <span className="text-lg font-bold text-white">ZoomerVPN</span>
+              <span className="text-lg font-bold text-white">{BRAND_NAME}</span>
             </div>
             <p className="text-gray-400 text-sm">
               Быстрый и безопасный VPN на базе VLESS Reality. Создан для свободного интернета.
@@ -64,7 +64,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-10 pt-6 border-t border-zoomer-border text-center text-gray-500 text-sm">
-          &copy; {new Date().getFullYear()} ZoomerVPN. Все права защищены.
+          &copy; {new Date().getFullYear()} {BRAND_NAME}. Все права защищены.
         </div>
       </div>
     </footer>

@@ -1,9 +1,10 @@
 import { Helmet } from 'react-helmet-async';
+import { BRAND_NAME, TELEGRAM } from '@utils/constants';
 
 export default function TermsPage() {
   return (
     <>
-      <Helmet><title>Пользовательское соглашение — ZoomerVPN</title></Helmet>
+      <Helmet><title>Пользовательское соглашение — {BRAND_NAME}</title></Helmet>
       <section className="py-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-3xl font-bold text-white mb-8">Пользовательское соглашение</h1>
@@ -11,10 +12,10 @@ export default function TermsPage() {
             <p>Дата вступления в силу: 01 апреля 2026 г.</p>
 
             <h2 className="text-xl font-semibold text-white">1. Общие положения</h2>
-            <p>Настоящее соглашение регулирует использование VPN-сервиса ZoomerVPN. Используя сервис, вы принимаете условия данного соглашения.</p>
+            <p>Настоящее соглашение регулирует использование VPN-сервиса {BRAND_NAME}. Используя сервис, вы принимаете условия данного соглашения.</p>
 
             <h2 className="text-xl font-semibold text-white">2. Описание сервиса</h2>
-            <p>ZoomerVPN предоставляет услугу VPN-подключения с использованием протокола VLESS Reality. Сервис обеспечивает шифрование трафика и доступ к заблокированным ресурсам.</p>
+            <p>{BRAND_NAME} предоставляет услугу VPN-подключения с использованием протокола VLESS Reality. Сервис обеспечивает шифрование трафика и доступ к заблокированным ресурсам.</p>
 
             <h2 className="text-xl font-semibold text-white">3. Правила использования</h2>
             <p>Запрещается использовать сервис для:</p>
@@ -32,7 +33,7 @@ export default function TermsPage() {
             <p>Сервис предоставляется «как есть». Мы не гарантируем бесперебойную работу и не несём ответственности за убытки, связанные с использованием VPN.</p>
 
             <h2 className="text-xl font-semibold text-white">6. Контакты</h2>
-            <p>Поддержка: <a href="https://t.me/suppzoomvpn" className="text-zoomer-neon hover:underline">@suppzoomvpn</a></p>
+            <p>Поддержка: <a href={TELEGRAM.SUPPORT_URL} className="text-zoomer-neon hover:underline">@goSocialsupp</a></p>
           </div>
         </div>
       </section>

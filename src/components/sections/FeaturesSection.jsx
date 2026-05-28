@@ -15,7 +15,7 @@ export default function FeaturesSection() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-            Почему <span className="text-gradient">ZoomerVPN</span>?
+            Почему <span className="text-gradient">Ускоритель Соцсетей</span>?
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
             Создан для себя и друзей. Особое внимание к приватности, скорости и стабильности.

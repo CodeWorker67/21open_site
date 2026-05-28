@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Shield } from 'lucide-react';
-import { ROUTES, TELEGRAM } from '@utils/constants';
+import { ROUTES } from '@utils/constants';
 import useAuthStore from '@stores/authStore';
 import Button from '@components/ui/Button';
 
@@ -28,7 +28,7 @@ export default function Header() {
               <Shield className="w-5 h-5 text-white" />
             </div>
             <span className="text-xl font-bold text-white">
-              Zoomer<span className="text-gradient">VPN</span>
+              Ускоритель <span className="text-gradient">Соцсетей</span>
             </span>
           </Link>
 

@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { Shield, Mail, ArrowLeft } from 'lucide-react';
 import useAuthStore from '@stores/authStore';
 import { authApi } from '@services/api';
-import { ROUTES, GOOGLE_CLIENT_ID } from '@utils/constants';
+import { ROUTES, GOOGLE_CLIENT_ID, BRAND_NAME } from '@utils/constants';
 import Button from '@components/ui/Button';
 import toast from 'react-hot-toast';
 
@@ -22,7 +22,7 @@ export default function LoginPage() {
   return (
     <>
       <Helmet>
-        <title>Вход — ZoomerVPN</title>
+        <title>Вход — {BRAND_NAME}</title>
       </Helmet>
 
       <section className="min-h-screen flex items-center justify-center py-20">
@@ -36,7 +36,7 @@ export default function LoginPage() {
               <Shield className="w-8 h-8 text-white" />
             </div>
 
-            <h1 className="text-2xl font-bold text-white mb-2">Войти в ZoomerVPN</h1>
+            <h1 className="text-2xl font-bold text-white mb-2">Войти в {BRAND_NAME}</h1>
             <p className="text-gray-400 text-sm mb-6">Выберите способ входа</p>
 
             {/* Method tabs — вход через Telegram временно скрыт (раскомментируйте блок ниже и TelegramAuth)
@@ -136,6 +136,11 @@ function GoogleLoginButton() {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
+    if (!GOOGLE_CLIENT_ID) {
+      toast.error('Не задан Google Client ID (VITE_GOOGLE_CLIENT_ID)');
+      return;
+    }
+
     const handleCredential = async (response) => {
       const result = await googleLogin(response.credential);
       if (result.success) {

@@ -21,7 +21,7 @@ export default function PlansPreviewSection() {
             Простые <span className="text-gradient">тарифы</span>
           </h2>
           <p className="text-gray-400">
-            Без скрытых платежей. Безлимитный трафик. До 3 устройств.
+            Без скрытых платежей. Безлимитный трафик. До 5 устройств.
           </p>
         </motion.div>
 

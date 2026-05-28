@@ -4,7 +4,7 @@ import { useSearchParams, useNavigate } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';
 import { paymentApi } from '@services/api';
 import useAuthStore from '@stores/authStore';
-import { ROUTES, TARIFFS } from '@utils/constants';
+import { ROUTES, TARIFFS, BRAND_NAME } from '@utils/constants';
 import Button from '@components/ui/Button';
 import toast from 'react-hot-toast';
 
@@ -62,7 +62,7 @@ export default function CheckoutPage() {
 
   return (
     <>
-      <Helmet><title>Оплата — ZoomerVPN</title></Helmet>
+      <Helmet><title>Оплата — {BRAND_NAME}</title></Helmet>
       <section className="py-20 min-h-screen flex items-center justify-center">
         <div className="card-dark max-w-md mx-4 text-center">
           {status === 'creating' && (

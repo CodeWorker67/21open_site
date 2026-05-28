@@ -3,10 +3,10 @@ import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Smartphone, Monitor, Apple, ChevronRight, Download, Copy, CheckCircle, ExternalLink } from 'lucide-react';
 import Button from '@components/ui/Button';
-import { TELEGRAM } from '@utils/constants';
+import { TELEGRAM, BRAND_NAME } from '@utils/constants';
 
 const platforms = [
-  { id: 'android', label: 'Android', icon: Smartphone, color: 'text-green-400' },
+  { id: 'android', label: 'Android', icon: Smartphone, color: 'text-purple-400' },
   { id: 'ios',     label: 'iOS',     icon: Apple, color: 'text-gray-300' },
   { id: 'windows', label: 'Windows', icon: Monitor, color: 'text-blue-400' },
   { id: 'macos',   label: 'macOS',   icon: Apple, color: 'text-gray-300' },
@@ -59,8 +59,8 @@ export default function SetupPage() {
   return (
     <>
       <Helmet>
-        <title>Подключение — ZoomerVPN</title>
-        <meta name="description" content="Инструкция по подключению ZoomerVPN на Android, iOS, Windows и macOS." />
+        <title>Подключение — {BRAND_NAME}</title>
+        <meta name="description" content={`Инструкция по подключению ${BRAND_NAME} на Android, iOS, Windows и macOS.`} />
       </Helmet>
 
       <section className="py-20">

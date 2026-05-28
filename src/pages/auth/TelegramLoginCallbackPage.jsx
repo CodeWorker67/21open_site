@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import useAuthStore from '@stores/authStore';
-import { ROUTES } from '@utils/constants';
+import { ROUTES, BRAND_NAME } from '@utils/constants';
 
 /** Дедуп при React Strict Mode (двойной mount в dev). */
 let lastHandledTelegramCallbackSearch = '';
@@ -73,7 +73,7 @@ export default function TelegramLoginCallbackPage() {
   return (
     <>
       <Helmet>
-        <title>Вход через Telegram — ZoomerVPN</title>
+        <title>Вход через Telegram — {BRAND_NAME}</title>
       </Helmet>
       <div className="flex min-h-[50vh] items-center justify-center px-4">
         <p className="text-sm text-gray-400">Завершаем вход через Telegram…</p>

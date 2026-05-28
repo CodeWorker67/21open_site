@@ -22,7 +22,7 @@ export default function HeroSection() {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-zoomer-neon/10 border border-zoomer-neon/20 mb-8"
           >
             <span className="w-2 h-2 rounded-full bg-zoomer-green animate-pulse" />
-            <span className="text-sm text-gray-300">125 000+ пользователей</span>
+            <span className="text-sm text-gray-300">150 000+ пользователей</span>
           </motion.div>
 
           {/* Heading */}
@@ -76,7 +76,7 @@ export default function HeroSection() {
             className="grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-3xl mx-auto"
           >
             {[
-              { icon: Users, value: '125K+', label: 'Пользователей' },
+              { icon: Users, value: '150K+', label: 'Пользователей' },
               { icon: Shield, value: '26', label: 'Серверов' },
               { icon: Zap, value: '10 Гбит/с', label: 'Скорость' },
               { icon: Play, value: '99.9%', label: 'Аптайм' },

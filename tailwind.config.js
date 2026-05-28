@@ -8,20 +8,21 @@ export default {
     extend: {
       colors: {
         zoomer: {
-          neon: '#3cff7a',
-          'neon-bright': '#8fffab',
-          'neon-dim': '#12a85c',
-          green: '#39ff6e',
-          cyan: '#4ae8c4',
+          neon: '#A855F7',
+          'neon-bright': '#C084FC',
+          'neon-dim': '#7C3AED',
+          green: '#9333EA',
+          cyan: '#818CF8',
+          blue: '#818CF8',
           dark: '#080b0e',
           'dark-alt': '#0a0e14',
           card: '#0f1419',
-          border: 'rgba(57, 255, 120, 0.1)',
+          border: 'rgba(168, 85, 247, 0.12)',
           muted: '#6b7280',
           'muted-soft': '#8a93a3',
         },
-        accent: '#3cff7a',
-        success: '#39ff6e',
+        accent: '#A855F7',
+        success: '#9333EA',
         warning: '#F59E0B',
         error: '#EF4444',
       },
@@ -34,11 +35,11 @@ export default {
         'btn': '14px',
       },
       boxShadow: {
-        'card': '0 0 0 1px rgba(57, 255, 120, 0.1), 0 24px 48px rgba(0, 0, 0, 0.5), 0 0 80px rgba(57, 255, 100, 0.05)',
-        'neon': '0 4px 24px rgba(57, 255, 120, 0.32), 0 0 0 1px rgba(255, 255, 255, 0.14) inset',
-        'neon-hover': '0 6px 32px rgba(57, 255, 120, 0.42), 0 0 0 1px rgba(255, 255, 255, 0.16) inset',
-        'glow': '0 0 20px rgba(57, 255, 120, 0.3)',
-        'glow-lg': '0 0 40px rgba(57, 255, 120, 0.6)',
+        'card': '0 0 0 1px rgba(168, 85, 247, 0.12), 0 24px 48px rgba(0, 0, 0, 0.5), 0 0 80px rgba(124, 58, 237, 0.08)',
+        'neon': '0 4px 24px rgba(168, 85, 247, 0.32), 0 0 0 1px rgba(255, 255, 255, 0.14) inset',
+        'neon-hover': '0 6px 32px rgba(168, 85, 247, 0.42), 0 0 0 1px rgba(255, 255, 255, 0.16) inset',
+        'glow': '0 0 20px rgba(168, 85, 247, 0.3)',
+        'glow-lg': '0 0 40px rgba(168, 85, 247, 0.6)',
       },
       animation: {
         'glow': 'glow 2s ease-in-out infinite alternate',
@@ -50,8 +51,8 @@ export default {
       },
       keyframes: {
         glow: {
-          '0%': { boxShadow: '0 0 20px rgba(57, 255, 120, 0.3)' },
-          '100%': { boxShadow: '0 0 40px rgba(57, 255, 120, 0.6)' },
+          '0%': { boxShadow: '0 0 20px rgba(168, 85, 247, 0.3)' },
+          '100%': { boxShadow: '0 0 40px rgba(168, 85, 247, 0.6)' },
         },
         float: {
           '0%, 100%': { transform: 'translateY(0)' },

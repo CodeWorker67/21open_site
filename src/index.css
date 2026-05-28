@@ -15,8 +15,8 @@
 @layer components {
   .btn-primary {
     @apply font-semibold px-6 py-3 rounded-btn transition-all duration-300 transform hover:scale-105 hover:shadow-neon-hover;
-    background: linear-gradient(95deg, #12a85c 0%, #3cff7a 42%, #8fffab 78%, #7af0d4 100%);
-    color: #061208;
+    background: linear-gradient(95deg, #6D28D9 0%, #A855F7 42%, #C084FC 78%, #DDD6FE 100%);
+    color: #0f0618;
   }
   .btn-secondary {
     @apply border-2 border-zoomer-neon text-zoomer-neon hover:bg-zoomer-neon hover:text-zoomer-dark font-semibold px-6 py-3 rounded-btn transition-all duration-300;
@@ -37,7 +37,7 @@
 
 @layer utilities {
   .text-gradient {
-    background: linear-gradient(95deg, #12a85c 0%, #3cff7a 18%, #6dff9e 34%, #4ae8c4 50%, #39ffc8 66%, #2ee86a 82%, #12b85a 100%);
+    background: linear-gradient(95deg, #6D28D9 0%, #9333EA 18%, #A855F7 34%, #C084FC 50%, #DDD6FE 66%, #A855F7 82%, #7C3AED 100%);
     background-size: 280% 100%;
     -webkit-background-clip: text;
     background-clip: text;
@@ -50,12 +50,12 @@
   }
   .bg-grid {
     background-image:
-      linear-gradient(rgba(57, 255, 120, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(57, 255, 120, 0.03) 1px, transparent 1px);
+      linear-gradient(rgba(168, 85, 247, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(168, 85, 247, 0.04) 1px, transparent 1px);
     background-size: 60px 60px;
   }
   .bg-radial-glow {
-    background: radial-gradient(ellipse at 50% 0%, rgba(57, 255, 120, 0.12) 0%, transparent 60%);
+    background: radial-gradient(ellipse at 50% 0%, rgba(168, 85, 247, 0.14) 0%, transparent 60%);
   }
   .bg-page {
     background: #080b0e;
@@ -67,7 +67,7 @@
     inset: 0;
     z-index: 0;
     pointer-events: none;
-    background: linear-gradient(125deg, #060809 0%, #0a0e12 16%, #0c1218 30%, #081410 44%, #0a1612 58%, #080c10 72%, #0a100e 86%, #080b0e 100%);
+    background: linear-gradient(125deg, #060809 0%, #0a0e12 16%, #0c0a18 30%, #100818 44%, #0a0814 58%, #080c10 72%, #0a0810 86%, #080b0e 100%);
     background-size: 320% 320%;
     animation: bgShimmer 22s ease-in-out infinite;
   }
@@ -78,9 +78,9 @@
     z-index: 0;
     pointer-events: none;
     background:
-      radial-gradient(ellipse 55% 45% at 30% 40%, rgba(40, 220, 100, 0.12), transparent 58%),
-      radial-gradient(ellipse 50% 40% at 75% 65%, rgba(30, 180, 220, 0.08), transparent 55%),
-      radial-gradient(ellipse 40% 35% at 50% 90%, rgba(20, 140, 90, 0.07), transparent 50%);
+      radial-gradient(ellipse 55% 45% at 30% 40%, rgba(124, 58, 237, 0.14), transparent 58%),
+      radial-gradient(ellipse 50% 40% at 75% 65%, rgba(129, 140, 248, 0.1), transparent 55%),
+      radial-gradient(ellipse 40% 35% at 50% 90%, rgba(91, 33, 182, 0.08), transparent 50%);
     animation: bgGlowDrift 28s ease-in-out infinite alternate;
   }
 }

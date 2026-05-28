@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import useAuthStore from '@stores/authStore';
-import { ROUTES } from '@utils/constants';
+import { ROUTES, BRAND_NAME } from '@utils/constants';
 
 /** Дедуп при React Strict Mode (двойной mount в dev). */
 let lastHandledBotLoginSearch = '';
@@ -42,7 +42,7 @@ export default function BotLoginPage() {
   return (
     <>
       <Helmet>
-        <title>Вход с бота — ZoomerVPN</title>
+        <title>Вход с бота — {BRAND_NAME}</title>
       </Helmet>
       <div className="flex min-h-[50vh] items-center justify-center px-4">
         <p className="text-sm text-gray-400">Выполняем вход…</p>
