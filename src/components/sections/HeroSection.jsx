@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Play, Shield, Zap, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { TELEGRAM, ROUTES } from '@utils/constants';
+import { TELEGRAM, ROUTES, MIN_TARIFF_PRICE } from '@utils/constants';
 import Button from '@components/ui/Button';
 
 export default function HeroSection() {
@@ -69,7 +69,7 @@ export default function HeroSection() {
             </Link> */}
             <Link to={ROUTES.PRICING}>
               <Button variant="secondary" className="text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4">
-                Тарифы от 349 руб
+                Тарифы от {MIN_TARIFF_PRICE} руб
               </Button>
             </Link>
           </motion.div>
