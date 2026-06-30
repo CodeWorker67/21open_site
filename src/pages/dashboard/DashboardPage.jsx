@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { QRCodeSVG } from 'qrcode.react';
-import { User, Key, Users, LogOut, Shield, Clock, Copy, Check, ExternalLink, Link2, Send, Mail, Zap, Wifi } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
+import { User, Key, Users, LogOut, Shield, Clock, Copy, Check, ExternalLink, Link2, Send, Mail, Zap, Wifi, Gift } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import useAuthStore from '@stores/authStore';
-import { userApi, /* trialApi, */ authApi } from '@services/api';
+import { userApi, /* trialApi, */ authApi, giftApi } from '@services/api';
 import { TELEGRAM, ROUTES, BRAND_NAME, PRO_SUBSCRIPTION_LABEL, SUBSCRIPTION_SLOTS } from '@utils/constants';
 import Button from '@components/ui/Button';
 import toast from 'react-hot-toast';
@@ -79,8 +79,18 @@ function OverviewTab() {
   const [sub, setSub] = useState(null);
   const [keys, setKeys] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [giftId, setGiftId] = useState('');
+  const [giftLoading, setGiftLoading] = useState(false);
   // const [trialLoading, setTrialLoading] = useState(false);
-  const navigate = useNavigate();
+
+  const refreshSubscription = async () => {
+    const [{ data: newSub }, { data: newKeys }] = await Promise.all([
+      userApi.subscription().then((r) => r).catch(() => ({ data: null })),
+      userApi.keys().then((r) => r).catch(() => ({ data: null })),
+    ]);
+    if (newSub) setSub(newSub);
+    if (newKeys) setKeys(newKeys);
+  };
 
   useEffect(() => {
     Promise.all([
@@ -88,6 +98,38 @@ function OverviewTab() {
       userApi.keys().then(({ data }) => setKeys(data)).catch(() => null),
     ]).finally(() => setLoading(false));
   }, []);
+
+  const normalizeGiftId = (raw) => {
+    let id = raw.trim();
+    if (id.toLowerCase().startsWith('gift_')) {
+      id = id.slice(5);
+    }
+    return id.trim();
+  };
+
+  const handleGiftActivate = async () => {
+    const id = normalizeGiftId(giftId);
+    if (!id) {
+      toast.error('Введите ID подарка');
+      return;
+    }
+    setGiftLoading(true);
+    try {
+      const { data } = await giftApi.activate(id);
+      if (data.success) {
+        const days = data.days_added;
+        const expires = data.expires && data.expires !== '-' ? ` до ${data.expires}` : '';
+        toast.success(`Подарок активирован! +${days} дн.${expires}`);
+        setGiftId('');
+        await refreshSubscription();
+      }
+    } catch (err) {
+      const detail = err.response?.data?.detail;
+      toast.error(typeof detail === 'string' ? detail : 'Не удалось активировать подарок');
+    } finally {
+      setGiftLoading(false);
+    }
+  };
 
   // const handleTrial = async () => {
   //   setTrialLoading(true);
@@ -182,6 +224,34 @@ function OverviewTab() {
             <Users className="w-5 h-5 text-zoomer-neon mx-auto mb-2" />
             <div className="text-sm text-gray-300">Поддержка</div>
           </a>
+        </div>
+
+        <div className="mt-4 p-4 rounded-xl bg-white/5 border border-zoomer-border">
+          <div className="flex items-center gap-2 mb-3">
+            <Gift className="w-5 h-5 text-zoomer-neon" />
+            <span className="text-sm font-medium text-white">Активация подарка</span>
+          </div>
+          <p className="text-xs text-gray-500 mb-3">
+            Введите ID подарка из сообщения. Для активации нужен привязанный Telegram-аккаунт.
+          </p>
+          <div className="flex gap-2">
+            <input
+              type="text"
+              value={giftId}
+              onChange={(e) => setGiftId(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && !giftLoading && handleGiftActivate()}
+              className="flex-1 px-3 py-2.5 rounded-lg bg-zoomer-dark border border-zoomer-border text-white text-sm font-mono focus:border-zoomer-neon focus:outline-none transition-colors"
+              placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+              disabled={giftLoading}
+            />
+            <Button
+              onClick={handleGiftActivate}
+              disabled={giftLoading || !giftId.trim()}
+              className="px-4 text-sm flex-shrink-0"
+            >
+              {giftLoading ? '...' : 'Активировать'}
+            </Button>
+          </div>
         </div>
       </div>
     </div>
