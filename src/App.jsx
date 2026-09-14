@@ -5,7 +5,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { Toaster } from 'react-hot-toast';
 
 import useAuthStore from '@stores/authStore';
-import { captureStampFromUrl } from '@utils/stamp';
+import { capturePartnerFromUrl, captureStampFromUrl } from '@utils/stamp';
 import Header from '@components/navigation/Header';
 import Footer from '@components/navigation/Footer';
 import Button from '@components/ui/Button';
@@ -88,6 +88,7 @@ function App() {
   useEffect(() => {
     loadFromStorage();
     captureStampFromUrl();
+    capturePartnerFromUrl();
   }, [loadFromStorage]);
 
   return (
